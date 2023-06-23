@@ -1,0 +1,389 @@
+title QUIZ
+include irvine32.inc
+
+.data
+msg1 BYTE "         ........... Welcome to your first quiz...........", 0
+msg2 BYTE "Rules: ", 0
+msg3 BYTE "1- For every correct answer, you will get 1 point", 0
+msg4 BYTE "2- For every wrong answer, you will lose 1 point", 0
+msg5 BYTE "You have successfully completed your quiz", 0
+msg6 BYTE "Your total obtained point is: ", 0
+msg7 BYTE "Press 1 to re-attempt the quiz or 0 to exit", 0
+msgCorrect BYTE "Correct answer", 0
+msgWrong BYTE "Wrong answer", 0
+count BYTE 0
+
+q1 BYTE "What is the primary purpose of assembly language?", 0
+q1A BYTE "a) To make programming more difficult  b) To simplify programming by providing high-level language constructs    c) To provide a way to interact with hardware at a low-level", 0
+
+q2 BYTE "Which of the following is not a typical assembly language instruction?", 0
+q2A BYTE "a) ADD  b) DIV  c) IF", 0
+
+q3 BYTE "Which of the following is true about assembly language programs?", 0
+q3A BYTE "a) They are machine-independent  b) They are easier to read than high-level language programs  c) They are faster and more efficient than high-level language programs", 0
+
+q4 BYTE "Which of the following is an example of an assembly language mnemonic?", 0
+q4A BYTE "a) MOV  b) Memory  c) Integer", 0
+
+q5 BYTE "Which of the following is not a typical assembly language register?", 0
+q5A BYTE "a) BX  b) CX  c) EX", 0
+
+q6 BYTE "Which of the following assembly language instructions is used to jump to a different part of the program?", 0
+q6A BYTE "a) MOV  b) ADD  c) JMP", 0
+
+q7 BYTE "Which of the following is a disadvantage of using assembly language?", 0
+q7A BYTE "a) It is slower and less efficient than high-level languages  b) It does not provide direct access to hardware resources  c) It is not portable across different hardware architectures", 0
+
+q8 BYTE "Which of the following assembly language instructions is used to perform logical operations?", 0
+q8A BYTE "a) MOV  b) AND  c) JMP", 0
+
+q9 BYTE "Which of the following is an example of a high-level language?", 0
+q9A BYTE "a) Machine language  b) Assembly language  c) C", 0
+
+q10 BYTE "Which of the following is an example of a conditional jump in assembly language?", 0
+q10A BYTE "a) JMP  b) JZ  c) MOV", 0
+
+.code
+main proc
+again:
+mov count,0
+  mov edx, OFFSET msg1
+  call WriteString
+  call Crlf
+
+  mov edx, OFFSET msg2
+  call WriteString
+  call Crlf
+
+  mov edx, OFFSET msg3
+  call WriteString
+  call Crlf
+
+  mov edx, OFFSET msg4
+  call WriteString
+  call Crlf
+
+  call Crlf
+  call Crlf
+
+QA1:
+  mov edx, OFFSET q1
+  call WriteString
+  call Crlf
+
+  mov edx, OFFSET q1A
+  call WriteString
+  call Crlf
+
+  mov dl, 'c'
+  call ReadChar
+  cmp al, dl
+  JZ print11
+  JNZ print21
+
+print11:
+  mov edx, OFFSET msgCorrect
+  call WriteString
+  inc count
+  jmp QA2
+
+print21:
+  mov edx, OFFSET msgWrong
+  call WriteString
+  sub cl,1
+    jmp QA2
+
+QA2:
+  call Crlf
+  call Crlf
+
+  mov edx, OFFSET q2
+  call WriteString
+  call Crlf
+
+  mov edx, OFFSET q2A
+  call WriteString
+  call Crlf
+
+  mov dl, 'c'
+  call ReadChar
+  cmp al, dl
+  JZ print12
+  JNZ print22
+
+print12:
+  mov edx, OFFSET msgCorrect
+  call WriteString
+  inc count
+  jmp QA3
+
+print22:
+  mov edx, OFFSET msgWrong
+  call WriteString
+  sub cl,1
+  jmp QA3
+
+QA3:
+  call crlf
+  call crlf
+  mov edx, OFFSET q3
+  call WriteString
+  call crlf
+
+  mov edx, OFFSET q3A
+  call WriteString
+  call crlf
+
+  mov dl, 'c'
+  call ReadChar
+  cmp al, dl
+  JZ print13
+  JNZ print23
+
+print13:
+  mov edx, OFFSET msgCorrect
+  call WriteString
+  inc count
+  jmp QA4
+
+print23:
+  mov edx, OFFSET msgWrong
+  call WriteString
+  sub cl,1
+  jmp QA4
+
+QA4:
+  call crlf
+  call crlf
+  mov edx, OFFSET q4
+  call WriteString
+  call crlf
+
+  mov edx, OFFSET q4A
+  call WriteString
+  call crlf
+
+  mov dl, 'a'
+  call ReadChar
+  cmp al, dl
+  JZ print14
+  JNZ print24
+
+print14:
+  mov edx, OFFSET msgCorrect
+  call WriteString
+  inc count
+  jmp QA5
+
+print24:
+  mov edx, OFFSET msgWrong
+  call WriteString
+  sub cl,1
+   jmp QA5
+
+QA5:
+  call crlf
+  call crlf
+  mov edx, OFFSET q5
+  call WriteString
+  call crlf
+
+  mov edx, OFFSET q5A
+  call WriteString
+  call crlf
+
+  mov dl, 'c'
+  call ReadChar
+  cmp al, dl
+  JZ print15
+  JNZ print25
+
+print15:
+  mov edx, OFFSET msgCorrect
+  call WriteString
+  inc count
+  jmp QA6
+
+print25:
+  mov edx, OFFSET msgWrong
+  call WriteString
+  sub cl,1
+  jmp QA6
+
+QA6:
+  call crlf
+  call crlf
+  mov edx, OFFSET q6
+  call WriteString
+  call crlf
+
+  mov edx, OFFSET q6A
+  call WriteString
+  call crlf
+
+  mov dl, 'c'
+  call ReadChar
+  cmp al, dl
+  JZ print16
+  JNZ print26
+
+print16:
+  mov edx, OFFSET msgCorrect
+  call WriteString
+  inc count
+  jmp QA7
+
+print26:
+  mov edx, OFFSET msgWrong
+  call WriteString
+ sub cl,1
+   jmp QA7
+
+QA7:
+  call crlf
+  call crlf
+  mov edx, OFFSET q7
+  call WriteString
+  call crlf
+
+  mov edx, OFFSET q7A
+  call WriteString
+  call crlf
+
+  mov dl, 'c'
+  call ReadChar
+  cmp al, dl
+  JZ print17
+  JNZ print27
+
+print17:
+  mov edx, OFFSET msgCorrect
+  call WriteString
+  inc count
+  jmp QA8
+
+print27:
+  mov edx, OFFSET msgWrong
+  call WriteString
+ sub cl,1
+   jmp QA8
+
+QA8:
+  call crlf
+  call crlf
+  mov edx, OFFSET q8
+  call WriteString
+  call crlf
+
+  mov edx, OFFSET q8A
+  call WriteString
+  call crlf
+
+  mov dl, 'b'
+  call ReadChar
+  cmp al, dl
+  JZ print18
+  JNZ print28
+
+print18:
+  mov edx, OFFSET msgCorrect
+  call WriteString
+  inc count
+  jmp QA9
+
+print28:
+  mov edx, OFFSET msgWrong
+  call WriteString
+  sub cl,1
+   jmp QA9
+
+QA9:
+  call crlf
+  call crlf
+  mov edx, OFFSET q9
+  call WriteString
+  call crlf
+
+  mov edx, OFFSET q9A
+  call WriteString
+  call crlf
+
+  mov dl, 'a'
+  call ReadChar
+  cmp al, dl
+  JZ print19
+  JNZ print29
+
+print19:
+  mov edx, OFFSET msgCorrect
+  call WriteString
+  inc count
+  jmp QA10
+
+print29:
+  mov edx, OFFSET msgWrong
+  call WriteString
+  sub cl,1
+  jmp QA10
+
+QA10:
+  call crlf
+  call crlf
+  mov edx, OFFSET q10
+  call WriteString
+  call crlf
+
+  mov edx, OFFSET q10A
+  call WriteString
+  call crlf
+
+  mov dl, 'b'
+  call ReadChar
+  cmp al, dl
+  JZ print110
+  JNZ print210
+
+print110:
+  mov edx, OFFSET msgCorrect
+  call WriteString
+  inc count
+  jmp endmsg
+
+print210:
+  mov edx, OFFSET msgWrong
+  call WriteString
+ sub cl,1
+   jmp endmsg
+
+endmsg:
+  call crlf
+  call crlf
+  mov edx, OFFSET msg5
+  call WriteString
+  call crlf
+
+  mov edx, OFFSET msg6
+  call WriteString
+
+ movzx eax, count 
+call WriteInt
+  call crlf
+  call crlf
+
+  mov edx, OFFSET msg7
+  call WriteString
+  jmp retry
+
+retry:
+  call crlf
+  call crlf
+  call ReadInt
+  cmp eax, 1
+  JZ again
+  JNZ done
+
+
+done:
+  exit
+main endp
+end main
